@@ -1,0 +1,109 @@
+
+
+{include file="part/head" /}
+<style>
+
+</style>
+<script src="__S__/js/jquery.min.js"></script>
+<script src="__S__/layer/layer.js"></script>
+{include file="part/headbar" /}
+{include file="part/menu" /}
+<div class="content-page">
+    <div class="content">
+        <!-- End page title box -->
+        <div class="page-title-box">
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Greeva</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                <li class="breadcrumb-item active">Form Elements</li>
+            </ol>
+            <h4 class="page-title">Form Elements</h4>
+        </div>
+            <div class="col-md-6">
+                <form role="form"  name="myform" method="post" id="d_form">
+                    <div class="form-group">
+                        <input class="form-control" name="phone" placeholder="手机号" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="pass" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="repass" placeholder="重复密码">
+                    </div>
+
+                    <div class="form-group col-lg-5 col-md-5 " style="display: inline-block">
+                        <input class="form-control" name="captcha" placeholder="验证码" >
+                    </div>
+                    <div class="col-lg-5 col-md-5 " style="display: inline-block"><img id="verify_img" src="{:captcha_src()}" alt="验证码" onclick="refreshVerify()"> </div>
+
+                    <div class="form-group">
+                        <input class="form-control" name="code" placeholder="手机验证码">
+                    </div>
+
+                    <button type="button" class="btn btn-default" id="submit" onclick="submit_resign()">提交注册</button>
+                    <input type="button" class="btn btn-default" id="code" value="获取验证码" onclick="codeButton()">
+                </form>
+
+                <button onclick="yanzheng()">yanzhengma</button>
+            </div>
+    </div>
+</div>
+{include file="part/foot" /}
+<script>
+    // <!--验证码的刷新>>>>>-->
+    function refreshVerify() {
+        var ts = Date.parse(new Date()) / 1000;
+        var img = document.getElementById('verify_img');
+        img.src = "/captcha?id=" + Math.random();
+    }
+    <!--<<<<<<验证码刷新-->
+
+    //>>>这个是获取验证码60秒倒计时
+    function codeButton(){
+        $.post("{:url('admin/resign0b/check_one')}", $("#d_form").serialize(), function (from_return) {
+            if (from_return.code == 1) {
+                location.href = "{:url('admin/Admin/admin')}";
+            } else {
+                layer.msg(from_return.msg, {time: 2000});
+            }
+        });
+    }
+    //<<<<<这个是获取验证码60秒倒计时
+
+    function submit_resign() {
+        $.post("{:url('admin/Pcresigncomplex/check_two')}", $("#d_form").serialize(), function (from_return) {
+
+            if (from_return.code == 1) {
+                location.href = "{:url('admin/Admin/admin')}";
+            } else {
+                layer.msg(from_return.msg, {time: 2000});
+            }
+        });
+    }
+
+    function yanzheng() {
+        phone = $("#phone").val()
+        $.post("{:url('api/sms/sendsms')}", {"phone": phone},);
+        var code = $("#code");
+        code.attr("disabled","disabled");
+        setTimeout(function(){
+            code.css("opacity","0.8");
+        },50)
+        var time = 60;
+        var set=setInterval(function(){
+            code.val("("+--time+")秒后重新获取");
+        }, 1000);
+        setTimeout(function(){
+            code.attr("disabled",false).html("重新获取验证码");
+            clearInterval(set);
+        }, 60000);
+    }
+
+
+
+
+</script>
+
+
+
+

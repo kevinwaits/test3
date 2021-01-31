@@ -1,0 +1,112 @@
+
+
+{include file="_part/head" /}
+
+{include file="_part/headbar" /}
+
+{include file="_part/menu" /}
+
+
+<div class="content-page">
+    <div class="content">
+        <!-- End page title box -->
+        <div class="page-title-box">
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Greeva</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                <li class="breadcrumb-item active">Form Elements</li>
+            </ol>
+            <h4 class="page-title">layer-tap</h4>
+        </div>
+
+        <button onclick="shang()" id="shang">标签弹出_上</button>
+        <button onclick="yaohuang()" >标签弹出_摇晃</button>
+        <button onclick="fuck()" >标签弹出_最简单</button>
+        <button onclick="content()" >内容弹出--固定文字</button>
+        <button onclick="layer_son()" >内容弹出--内嵌网页</button>
+        <button onclick="xuanze()" > 选择窗口--两个选择</button>
+        <br>
+        static下面直接layer文件夹,但是header仅仅引入了 layer->layer.js.没有引入layui里的东西
+        <br>
+        <img src="__S__/img/layer.png">
+
+    </div>
+</div>
+
+{include file="_part/foot" /}
+
+<script>
+    //标签类弹出 --- 最简单的 2秒小时
+    function fuck(){
+        layer.msg("fuckyou", {time: 2000});
+    }
+    //标签类弹出 --- 出现在上面,注意,要加id 或者 class
+    function shang() {
+        layer.tips('上', '#shang', {
+            tips: [1, '#61d'] //还可配置颜色
+        });
+    }
+    //标签类弹出 --- 左右摇晃
+    function yaohuang() {
+        layer.msg('玩命卖萌中',function(){});
+    }
+    //内容类弹出--- 固定文字
+    function content() {
+        layer.open({
+            type: 0,  //0,就是多一个确定按钮,1,就是啥都没有,其他都不要再一个一个试了
+            title: "kevin waits",  //这里 kevin waits可以直接替换成false,不要"",就是没有标题
+            closeBtn: 0,
+            shadeClose: true,
+            skin: '',//不要加,不会弄
+            //content里可以加入 br
+            content: '自定义HTML内容<br>自定义HTML内容<br>自定义HTML内容<br>',
+            area: ['20%', '20%'], //显示区域,不用解释,可以换成 xx px
+        });
+    }
+    // 内容类弹出 --- 弹出网页
+    // function layer_son() {
+    //     layer.open({
+    //         type: 2,  //子窗口就是2 ,其他的不要再去一个一个试了
+    //         area: ['700px', '450px'],   //新窗口区域
+    //         // area: ['50%', '30%'],   //也可以写成这样
+    //         fixed: false, //不固定
+    //         maxmin: true,
+    //         content: 'layer_son.html',  //这里注意,只能是在同控制器下的方法,写成"Controller/function.htmle"就错了
+    //     });
+    // }
+
+    // 内容类弹出 --- 弹出网页
+    function layer_son() {
+        layer.open({
+            type: 2,  //子窗口就是2 ,其他的不要再去一个一个试了
+            area: ['700px', '450px'],   //新窗口区域
+            // area: ['50%', '30%'],   //也可以写成这样
+            fixed: false, //不固定
+            maxmin: true,
+            content: 'layer_son.html',  //这里注意,只能是在同控制器下的方法,写成"Controller/function.htmle"就错了
+            end:function() {
+                location.reload();
+                alert(1111)
+            }
+        });
+    }
+
+    //选择类弹出框
+    function xuanze() {
+        myid=$(this).attr("id");
+        layer.confirm('是否真的删除', {
+            btn: ['真的删除', '按错了'] //两个按钮有默认的样式
+        }, function () {  //这里是第一个按钮的回调函数
+            location.href = "{:url('admin/Layermess/del_staff')}?phone="+myid;
+            layer.msg('删除成功', {icon: 1, time: 2000}); //icon,和time是msg的参数
+        }, function () {  //这是第二个按钮的回调,可以用ajax,也可以用直接定位方法,建议使用url
+            // location.href = "{:url('admin/Admin/add')}";
+            // $.post("{:url('main/Main/rec_aj')}", {"name": "kkkk"},);
+        });
+    }
+
+
+
+</script>
+
+

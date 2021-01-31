@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script src="__S__/js/jquery.min.js"></script>
+
+<body>
+
+    <div class="col-md-6">
+        <form role="form"  name="myform" method="post" id="d_form">
+            <div class="form-group">
+                <input class="form-control" name="textinput" placeholder="最普通的输入框">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="textinput" placeholder="最普通的输入框">
+            </div>
+            <button type="button" class="btn btn-default" onclick="ajax_set()">提交按钮Button</button>
+            <button type="reset" class="btn btn-default" onclick="ajax_clear()">Reset Button</button>
+        </form>
+    </div>
+    <a href="{:url('admin/Baserun/baserun')}">进入baserun</a>
+
+</body>
+
+<script>
+        function ajax_set() {
+                $.post("{:url('admin/Baselogin/session_set')}", $("#d_form").serialize(), function (from_return)
+                {
+                        alert(from_return);
+                });
+            }
+
+            function ajax_clear() {
+                $.post("{:url('admin/Baselogin/session_clear')}", $("#d_form").serialize(), function (from_return)
+                {
+                    alert(from_return);
+                });
+                }
+</script>
+
+
+</html>

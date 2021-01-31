@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="/public__S__/js/jquery.min.js"></script>
+<body>
+
+<!--<button onclick="my_img()">my_img</button>-->
+<button onclick="my_record()">record_start</button>
+<button onclick="my_stop()">record_stop</button>
+<br>
+<br>
+<button onclick="my_on()">record_播放</button>
+<br>
+<div id="localId"></div>
+<br>
+<!--<button onclick="upload()">upload</button>-->
+<!--<div id="upload_id"></div>-->
+<br>
+<button onclick="my_up_load()">my_up_load</button>
+
+<!--<button onclick="radio_file_up()">radio_file_up</button>-->
+
+</body>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+    wx.config({
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: '{$appId}', // 必填，公众号的唯一标识
+        timestamp: '{$timestamp}', // 必填，生成签名的时间戳
+        nonceStr: '{$nonceStr}', // 必填，生成签名的随机串
+        signature: '{$signature}',// 必填，签名
+        jsApiList: [
+            'onMenuShareTimeline',
+            'chooseImage',
+            'startRecord',
+            'stopRecord',
+            'playVoice',
+            'uploadVoice',
+            'downloadVoice',
+        ] // 必填，需要使用的JS接口列表
+    });
+
+    function my_img() {
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                $("#img").attr("src", localIds);
+            }
+        });
+    }
+
+    function my_record() {
+        wx.startRecord();
+    }
+
+    function my_stop() {
+        wx.stopRecord({
+            success: function (res) {
+                var localId = res.localId;
+                $("#localId").html(res.localId)
+            }
+        });
+    }
+
+    function my_on() {
+        wx.playVoice({
+            localId: $("#localId").html(), // 需要播放的音频的本地ID，由stopRecord接口获得
+        });
+    }
+
+    function uploadVoice(){
+        //调用微信的上传录音接口把本地录音先上传到微信的服务器
+        //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
+        wx.uploadVoice({
+            localId: $("#record_src").html(), // 需要上传的音频的本地ID，由stopRecord接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+                //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
+                $.ajax({
+                    url: '{:url("admin/Loadup/loadup_do")}',
+                    type: 'post',
+                    data: JSON.stringify(res),
+                    dataType: "json",
+                    success: function (data) {
+                        alert('文件已经保存到七牛的服务器');//这回，我使用七牛存储
+                    },
+                    error: function (xhr, errorType, error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+        alert(res);
+    }
+
+    function radio_file_up(){
+        // $.post("{:url('sdk/Loadup/get_loadup')}", {"url": 111},);
+        wx.uploadVoice({
+            localId: $("#upload_id").html(), // 本地微信语音文件标识
+            isShowProgressTips: 1, // 开启上传提示
+            success: function (res) {
+                //上传成功后从微信服务器下保存
+                alert(res.localId);
+                // var url = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token="+token+"&media_id="+res.serverId;
+                $.post("{:url('sdk/Wx/upload_do')}", {"localId":res.localId},);
+            },
+        });
+    }
+
+    function upload() {
+        wx.uploadVoice({
+            localId: $("#record_src").html(), // 需要上传的音频的本地ID，由stopRecord接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+                var serverId = res.serverId; // 返回音频的服务器端ID
+                $("#upload_id").html(res.serverId);
+                alert(res.serverId);
+            }
+        });
+    }
+
+    function my_up_load() {
+        wx.uploadVoice({
+            localId: $("#localId").html(), // 需要上传的音频的本地ID，由stopRecord接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+                var serverId = res.serverId; // 返回音频的本地ID
+                alert(11111);
+                alert(serverId);
+                // var url = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token="+token+"&media_id="+res.serverId;
+                $.post("{:url('sdk/Wx/upload_do')}", {"serverId":serverId},);
+                //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
+                // $.ajax({
+                //     url: '{:url("sdk/Loadup/loadup_do")}',
+                //     type: 'post',
+                //     data: JSON.stringify(localId),
+                //     dataType: "json",
+                //     success: function (data) {
+                //         alert('文件已经保存到七牛的服务器');//这回，我使用七牛存储
+                //     },
+                //     error: function (xhr, errorType, error) {
+                //         console.log(error);
+                //     }
+                // });
+            }
+        });
+    }
+
+
+
+
+</script>
+</html>

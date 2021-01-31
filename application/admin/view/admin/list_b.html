@@ -1,0 +1,74 @@
+
+
+{include file="part/head" /}
+{include file="part/headbar" /}
+{include file="part/menu" /}
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="page-title-box">
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Greeva</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                    <li class="breadcrumb-item active">Form Elements</li>
+                </ol>
+                <h4 class="page-title">Form Elements</h4>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                </div> <!-- end col -->
+
+                <div class="col-md-6">
+                    <div class="card-box">
+                        <h4 class="header-title">Switchery</h4>
+
+                        <p class="mb-1 mt-3 font-weight-medium text-muted">Basic</p>
+                        <p class="text-muted font-13">
+                            Add an attribute <code>
+                            data-plugin="switchery" data-color="@colors"</code>
+                            to your input element and it will be converted into switch.
+                        </p>
+
+                        <div class="switchery-demo">
+                            <input type="checkbox"  data-plugin="switchery" data-color="#039cfd"/>
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#f1b53d"/>
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#1bb99a"/>
+                            <input type="checkbox"  data-plugin="switchery" data-color="#ff5d48"/>
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#3db9dc"/>
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#2b3d51"/>
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#9261c6"/>
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#ff7aa3"/>
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#98a6ad"/>
+                        </div>
+
+
+                        <p class="mb-1 mt-4 font-weight-medium text-muted">Sizes & Secondary color</p>
+                        <p class="text-muted font-13">
+                            Add an attribute <code>
+                            data-size="small",data-size="large"</code>
+                            to your input element and it will be converted into switch.
+                            Add an attribute <code>
+                            data-color="@color" data-secondary-color="@color"</code>
+                            to your input element and it will be converted into switch.
+                        </p>
+
+                        <div class="switchery-demo">
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small"/>
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#ff7aa3"/>
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#2b3d51" data-size="large"/>
+                            <input type="checkbox" data-plugin="switchery" data-color="#1bb99a" data-secondary-color="#ff5d48" />
+                            <input type="checkbox" data-plugin="switchery" data-color="#9261c6"  data-secondary-color="#ff7aa3" checked />
+                        </div>
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+            </div><!-- end row -->
+
+        </div> <!-- end container-fluid-->
+    </div>
+</div>
+
+{include file="part/foot" /}

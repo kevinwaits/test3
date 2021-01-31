@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电视台</title>
+    <!--引入video.js文件-->
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="__S__/layer/layer.js"></script>
+    <script src="__S__/js/video.min.js"></script>
+    <link href="__S__/css/video-js.min.css" rel="stylesheet" />
+</head>
+<body>
+<section id="videoPlayer">
+    <video id="example-video"  class="video-js vjs-default-skin vjs-big-play-centered">
+        <!-- hls直播源地址：CCTV6高清 -->
+        <!--<source src="http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8" type="application/x-mpegURL">-->
+        <!-- 官方案例MP4 -->
+        <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+    </video>
+</section>
+<br />
+<button class="control" onclick=operation("play")>播放</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=operation("stop")>停止</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=operation("reload")>重载</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=operation("reset")>重置</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=operation("fastForward")>快进</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=operation("back")>后退</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=operation("volumeUp")>音量+</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=operation("volumeUp")>音量-</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=operation("fullScreen")>全屏</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=operation("exitFullScreen")>退出全屏</button><br /><br /><br />
+<button class="control" onclick=cut("CCTV1")>CCTV1高清 </button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=cut("CCTV3")>CCTV3高清 </button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=cut("CCTV6")>CCTV6高清 </button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=cut("XHWS")>香港卫视</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=cut("MGZW")>美国中文电视</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button class="control" onclick=cut("ocean")>海洋</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+</body>
+</html>

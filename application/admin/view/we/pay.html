@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script src="__S__/js/jquery.min.js"></script>
+
+<body>
+
+<button onclick="pay()">pay</button>
+
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+
+
+
+
+    function pay(){
+
+        wx.config({$jssdk});
+
+        wx.chooseWXPay({
+            timestamp: '{$config["timestamp"]}',
+            nonceStr: '{$config["nonceStr"]}',
+            package: '{$config["package"]}',
+            signType: '{$config["signType"]}',
+            paySign: '{$config["paySign"]}', // 支付签名
+            success: function (res) {
+                alert('success');
+            }
+        });
+    }
+
+
+</script>
+</html>

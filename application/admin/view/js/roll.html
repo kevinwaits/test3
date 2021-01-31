@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__S__/font-awesome/css/font-awesome.css" rel="stylesheet" />
+</head>
+
+<style>
+    #head{transition: 0.5s}
+</style>
+
+<body>
+
+<!--<div id="head" style="height: 500px;width: 100%;background: red;position: fixed">-->
+    <!--五福-->
+<!--</div>-->
+<!--<div style="height: 2000px;width: 200px;background-color: green"></div>-->
+
+<div class="fa fa-address-book fa-4x"></div>
+
+</body>
+
+<script src="__S__/js/jquery.min.js"></script>
+<script>
+    $(document).scroll(function() {
+        var scroH = $(document).scrollTop();  //滚动高度
+        var viewH = $(window).height();  //可见高度
+        var contentH = $(document).height();  //内容高度
+
+        if(scroH >500){  //距离顶部大于100px时
+            console.log(scroH)
+            $("#head").css("height","100px")
+            $("#head").html("kkkk")
+        }
+        if(scroH <500){  //距离顶部大于100px时
+            console.log(scroH)
+            $("#head").css("height","500px")
+            $("#head").html("五福")
+        }
+    });
+</script>
+</html>

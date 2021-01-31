@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="shortcut icon" href="__S__/assets/images/favicon.ico">
+
+    <link href="__S__/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <!--<link href="__S__/assets/libs/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css"/>-->
+    <link href="__S__/assets/css/app.css" rel="stylesheet" type="text/css" />
+    <link href="__S__/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!--<link href="__S__/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />-->
+    <link href="__S__/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="__S__/assets/libs/mohithg-switchery/switchery.min.css" rel="stylesheet">
+    <link href="__S__/assets/libs/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="__S__/css/video-js.min.css" rel="stylesheet" />
+
+</head>
+
+<style>
+    .selected_sys{background-color: red}
+</style>
+
+<body>
+
+<form role="form" name="myform" method="post" id="d_form">
+    <div style="display: flex;flex-direction: row;justify-content: space-around">
+        <div class="sel_sys" data-x="android">安卓</div>
+        <div class="sel_sys" data-x="ios">苹果</div>
+    </div>
+    <input class="form-control phone" name="phone" placeholder="手机号" id="phone">
+    <br>
+    <input type="button" class="btn btn-primary btn-block" id="code" value="发送短信" onclick="get_input()"> <br>
+    <div class="row">
+        <div class="  col-md-6 " style="display: inline-block">
+            <input class="form-control" name="captcha" placeholder="验证码">
+        </div>
+    </div>
+    <br>
+
+    <br>
+    <input type="button" class="btn btn-primary btn-block"  value="提交注册" onclick="submitform()"> <br>
+
+</form>
+
+</body>
+
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="__S__/layer/layer.js"></script>
+<script src="__S__/js/video.min.js"></script>
+
+<script>
+
+    function get_input() {
+        var data={};
+        data.sys=$(".selected_sys").data("x");
+        data.phone=$(".phone").val();
+        console.log(data);
+    }
+
+        $(".sel_sys").click(function () {
+                $(".sel_sys").removeClass("selected_sys")
+            $(this).addClass("selected_sys")
+            });
+
+    function sendsms() {
+        $.post("{:url('admin/Testsms/get_aj')}", $("#d_form").serialize(), function (from_return) {
+            if (from_return.code == 1) {
+                // location.href = "{:url('admin/Admin/admin')}";
+            } else {
+                layer.msg(from_return.msg, {time: 2000});
+            }
+        });
+
+        // >>>>倒计时代码
+        var code = $("#code");
+        code.attr("disabled", "disabled");
+        setTimeout(function () {
+            code.css("opacity", "0.7");
+        }, 100)
+        var time = 6;
+        var set = setInterval(function () {
+            code.val("(" + --time + ")秒后重新获取");
+        }, 100);
+        setTimeout(function () {
+            code.attr("disabled", false).val("重新获取验证码");
+            clearInterval(set);
+        }, time*100);
+        // <<<<倒计时代码
+    }
+
+
+</script>
+
+</html>

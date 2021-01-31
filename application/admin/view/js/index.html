@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        font: 14px/150% microsoft yahei,tahoma;
+    }
+    .clear {
+        clear: both
+    }
+    .RadioStyle input {
+        display: none
+    }
+    .RadioStyle label {
+        border: 1px solid #CCC;
+        color: #666;
+        padding: 2px 10px 2px 5px;
+        line-height: 28px;
+        min-width: 80px;
+        text-align: center;
+        float: left;
+        margin: 2px;
+        border-radius: 4px
+    }
+    .RadioStyle input:checked + label {
+        /*background: url(images/ico_checkon.svg) no-repeat right bottom;*/
+        border: 1px solid #00a4ff;
+        background-size: 21px 21px;
+        color: #00a4ff
+    }
+    .RadioStyle input:disabled + label {
+        opacity: 0.7;
+    }
+</style>
+
+<body>
+    <div class="col-md-6">
+            <form role="form" action="{:url('main/main/rec')}" name="myform" method="post">
+
+              <div class="form-group">
+                <input class="form-control" name="textinput" placeholder="最普通的输入框">
+              </div>
+
+                <div class="RadioStyle">
+                    <div class="Block PaddingL">
+                        <input type="radio" name="Storage" id="model1" />
+                        <label for="model1">iPhone 6s</label>
+                        <input type="radio" name="Storage" id="model2" />
+                        <label for="model2">iPhone 6s Plus</label>
+                        <input type="radio" name="Storage" id="model3" />
+                        <label for="model3">iPhone 7</label>
+                        <input type="radio" name="Storage" id="model4" checked />
+                        <label for="model4">iPhone 7 Plus</label>
+                    </div>
+                </div>
+
+                <div class="RadioStyle">
+                    <div class="Block PaddingL">
+                        <input type="checkbox" id="love1" />
+                        <label for="love1">女</label>
+                        <input type="checkbox" id="love2" />
+                        <label for="love2">绘画</label>
+                        <input type="checkbox" id="love3" />
+                        <label for="love3">摄影</label>
+                        <input type="checkbox" id="love4" checked />
+                        <label for="love4">骑行</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                <label>文件选择框</label>
+                <input type="file">
+              </div>
+
+              <div class="form-group">
+                <textarea name="textarea" class="form-control" rows="3" placeholder="多行文本框"></textarea>
+              </div>
+
+              <div class="form-group">
+                <div class="checkbox">
+                  <label>
+                    <input name="check_1" type="checkbox" value="checkbox_1">多选框_1
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input name="check_2" type="checkbox" value="checkbox_2">多选框_2
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">单选框_1
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">单选框_2
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>下拉选框</label>
+                <select class="form-control" name="sel">
+
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+
+                <div class="form-group">
+                <input type="radio" name="optionsRadios"  value="option1" checked="">单选框_1
+                <input type="radio" name="optionsRadios"  value="option2">单选框_2
+                </div>
+
+                <br><br>
+
+              <button type="submit" class="btn btn-default">提交按钮Button</button>
+              <button type="reset" class="btn btn-default">Reset Button</button>
+            </form>
+        </div>
+</body>
+
+<script>
+
+</script>
+
+</html>

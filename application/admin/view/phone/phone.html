@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport"/>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+
+    <!--<script src="__S__/js/jquery.min.js"></script>-->
+    <!--<script src="__S__/js/phonefoot.js"></script>-->
+    <!--<link href="__S__/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!--<link href="__S__/css/phonefoot.css" rel="stylesheet"/>-->
+    <!--<link href="__S__/font-awesome/css/font-awesome.css" rel="stylesheet"/>-->
+
+    <script src="/public__S__/js/jquery.min.js"></script>
+    <script src="/public__S__/js/phonefoot.js"></script>
+    <link href="/public__S__/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/public__S__/css/phonefoot.css" rel="stylesheet"/>
+    <link href="/public__S__/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+
+</head>
+
+<style>
+
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    a:focus, a:hover {
+        color: #ff8ac4;
+        text-decoration: none
+    }
+
+    /*div {*/
+        /*border: 1px solid red*/
+    /*}*/
+
+    /*.row{height: 120px}*/
+    .img_box {
+        height: 90px;
+        width: 90px;
+    }
+
+    .btn_box {
+        height: 90px;
+        width: 60px;
+    }
+
+    .list_box {
+        margin-right: 5px;padding: 0;height: 90px;margin-top: 5px;margin-left: 5px;
+    }
+    .list_box div{vertical-align: top}
+    .list_box>div{display: inline-block;margin: 0}
+    .text_box {
+        height: 90px;
+    }
+    .my_name{font-size: 15px;font-family:黑体;height: 22px;}
+    .my_price{float: right;font-size: 12px;font-family: 微软雅黑;color: #808080;height: 22px}
+    .my_intro{height:54px;white-space:normal;word-break:break-all;word-wrap:break-word;font-size: 12px;
+        font-family: 微软雅黑;color: #808080;border: 1px solid #FFFFFF;padding-top:3px ;
+    }
+    .my_record{height:14px;font-family: 微软雅黑;color: #0711ff;font-size: 12px}
+    .btn_box>div{height: 43px;line-height: 45px;text-align: center;font-size: 20px;
+        color: #00F7DE;border-radius: 5px;margin-top: 2px;background-color: #f5f5f5
+    }
+    img{height: 100%;width: 100%;border-radius: 5px}
+    .my_time{float: right}
+    .btn_text{font-size: 10px;}
+</style>
+<body>
+
+<header class="text-center" id="ft_header">TOP</header>
+<!--<div id="ft_content">-->
+<div class="list_box">
+    <div class="img_box"><img src="/public__S__/img/girl_1.jpg"></div>
+    <div class="text_box">
+        <div>
+            <span class="my_name">一个疯狂的无聊的</span>
+            <span class="my_price">1.2/分钟</span>
+        </div>
+        <div class="my_intro">我就jkjj是一个无聊的人啊wo我就j是一个无聊的人啊woshi yigd</div>
+        <div class="my_record"><span>接通率80.8%</span><span class="my_time">平均时长10.5分钟</span></div>
+    </div>
+    <div class="btn_box">
+        <div class="my_voice"><i class="fa fa-volume-up"><span class="btn_text">听一下</span></i></div>
+        <div class="my_phone"><i class="fa fa-phone"></i><span class="btn_text">求撩中</span></div>
+    </div>
+
+</div>
+
+
+<!--</div>-->
+<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45&#45;5;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--<div id="ft_menu" class="ft_menu">-->
+<!--<a id="one" class="ft_subMenu ft_text-center" href="#">-->
+<!--<i class="fa fa-home"></i>-->
+<!--<div class="ft_menu_name">QQ</div>-->
+<!--</a>-->
+<!--<a id="two" class="ft_subMenu ft_text-center" href="{:url('admin/Layermess/layermess')}">-->
+<!--<i class="fa fa-send"></i>-->
+<!--<div class="ft_menu_name">QQ</div>-->
+<!--</a>-->
+<!--<a id="three" class="ft_subMenu ft_text-center" href="#">-->
+<!--<i class="fa fa-cab"></i>-->
+<!--<div class="ft_menu_name">QQ</div>-->
+<!--</a>-->
+<!--<a id="four" class="ft_subMenu ft_text-center" href="#">-->
+<!--<i class="fa fa-key"></i>-->
+<!--<div class="ft_menu_name">QQ</div>-->
+<!--</a>-->
+<!--</div>-->
+<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+</body>
+
+<script>
+    text_box_width = $(window).width() - 174;
+    $(".text_box").width(text_box_width);
+    // $(".my_intro").width(text_box_width);
+
+
+
+</script>
+</html>

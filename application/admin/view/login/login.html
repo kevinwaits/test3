@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- App favicon -->
+</head>
+<link href="__S__/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="__S__/js/jquery.min.js"></script>
+<script src="__S__/layer/layer.js"></script>
+<body>
+<br><br><br>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                登录
+            </div>
+            <div class="panel-body">
+                <!--@登录_0 引入 js 1.8以上, layer-->
+                <!--@登录_1,最普通的form窗口,没啥说的-->
+                <!--&gt;>>>>>>>>>>>>>-->
+                <div class="col-md-6">
+
+                    <div> 下面是 validate和layer的结构图</div>
+                    <img src="__S__/img/login_layer.png">
+
+                    <form role="form" name="myform" method="post" id="d_form">
+
+                        <div class="form-group">
+                            <input class="form-control" name="name" placeholder="姓名">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="pass" placeholder="密码">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="code" placeholder="验证码">
+                        </div>
+                        <!--@登录_2,一个验证码展示窗口-->
+                        <div class=""><img id="verify_img" src="{:captcha_src()}" alt="验证码" onclick="refreshVerify()">
+                        </div>
+                        <button type="button" class="btn btn-default" id="submit">提交按钮Button</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    // @登录_3,验证码的点击刷新jq代码
+    function refreshVerify() {
+        var ts = Date.parse(new Date()) / 1000;
+        var img = document.getElementById('verify_img');
+        img.src = "/captcha?id=" + Math.random();
+    }
+
+    // @登录_3,验证码的点击刷新jq代码
+
+    // @登录_4,提交的ajax,注意  通过直接跳转,不通过有一个layer提示
+    $('#submit').on('click', function () {
+        $.post("{:url('admin/Login/login_handle')}", $("#d_form").serialize(), function (from_return) {
+            if (from_return.code == 1) {
+                location.href = "{:url('admin/Admin/admin')}";
+            } else {
+                layer.msg(from_return.msg, {time: 2000});
+            }
+        });
+    });
+    // @登录_4,提交的ajax
+
+    //@登录_5,转到 php login部分
+
+</script>

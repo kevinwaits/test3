@@ -1,0 +1,105 @@
+{include file="part/head" /}
+<style>
+
+</style>
+<script src="__S__/js/jquery.min.js"></script>
+<script src="__S__/layer/layer.js"></script>
+{include file="part/headbar" /}
+{include file="part/menu" /}
+<div class="content-page">
+    <div class="content">
+        <!-- End page title box -->
+        <div class="page-title-box">
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Greeva</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                <li class="breadcrumb-item active">Form Elements</li>
+            </ol>
+            <h4 class="page-title">Sendsigle</h4>
+        </div>
+        <div class="col-md-6">
+
+
+            <form role="form" name="myform" method="post" id="d_form">
+            <input class="form-control" name="phone" placeholder="手机号" id="phone">
+            <br>
+            <div class="row">
+                <div class="  col-md-6 " style="display: inline-block">
+                    <input class="form-control" name="captcha" placeholder="验证码">
+                </div>
+                <div class="col-md-6 " style="display: inline-block">
+                    <img id="verify_img" src="{:captcha_src()}" alt="验证码" onclick="refreshVerify()" style="height: 100%">
+                </div>
+            </div>
+            <br>
+            <input type="button" class="btn btn-primary btn-block" id="code" value="发送短信" onclick="sendsms()"> <br>
+                <div class="row">
+                    <div class="  col-md-6 " style="display: inline-block">
+                        <input class="form-control" name="captcha" placeholder="验证码">
+                    </div>
+                    <div class="col-md-6 " style="display: inline-block">
+                        <span>短信验证码</span>
+                    </div>
+                </div>
+                <br>
+            <input type="button" class="btn btn-primary btn-block"  value="提交注册" onclick="submitform()"> <br>
+
+            </form>
+
+
+
+        </div>
+    </div>
+</div>
+{include file="part/foot" /}
+<script>
+    //
+    <!--验证码的刷新>>>>>-->
+    function refreshVerify() {
+        var ts = Date.parse(new Date()) / 1000;
+        var img = document.getElementById('verify_img');
+        img.src = "/captcha?id=" + Math.random();
+    }
+
+    <!--<<<<<<验证码刷新-->
+
+    //>>>这个是获取验证码60秒倒计时
+    function sendsms() {
+        $.post("{:url('admin/Sms/sendsms')}", $("#d_form").serialize(), function (from_return) {
+            if (from_return.code == 1) {
+                location.href = "{:url('admin/Admin/admin')}";
+            } else {
+                layer.msg(from_return.msg, {time: 2000});
+            }
+        });
+        // >>>>倒计时代码
+        var code = $("#code");
+        code.attr("disabled", "disabled");
+        setTimeout(function () {
+            code.css("opacity", "0.9");
+        }, 1000)
+        var time = 6;
+        var set = setInterval(function () {
+            code.val("(" + --time + ")秒后重新获取");
+        }, 1000);
+        setTimeout(function () {
+            code.attr("disabled", false).val("重新获取验证码");
+            clearInterval(set);
+        }, time*1000);
+        // <<<<倒计时代码
+    }
+    //<<<<<这个是获取验证码60秒倒计时
+
+    // function submit_resign() {
+    //     $.post("{:url('admin/Sms/submit_resign')}", $("#d_form").serialize(), function (from_return) {
+    //         if (from_return.code == 1) {
+    //             layer.msg(from_return.msg, {time: 2000});
+    //         }
+    //     });
+    // }
+
+</script>
+
+
+
+

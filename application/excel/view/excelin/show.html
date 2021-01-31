@@ -1,0 +1,75 @@
+
+
+{include file="_part/head" /}
+
+{include file="_part/headbar" /}
+
+{include file="_part/menu" /}
+
+
+<div class="content-page">
+    <div class="content">
+        <!-- End page title box -->
+        <div class="page-title-box">
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Greeva</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                <li class="breadcrumb-item active">Form Elements</li>
+            </ol>
+            <h4 class="page-title">上传文件</h4>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xm-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        文件上传
+                    </div>
+                    <div class="panel-body">
+                        <!-- 注意如果没有 enctype="multipart/form-data"  就没法上传 -->
+                            <form action="{:url('excel/Upload/upload_rec')}" enctype="multipart/form-data" method="post">
+                                <input type="file" name="file" /> <br>
+                                <input type="submit" value="上传" />
+                            </form>
+                    </div>
+                    <div class="panel-footer">
+                        文件上传
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xm-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        excel 上传
+                    </div>
+                    <div class="panel-body">
+                        <!-- 注意如果没有 enctype="multipart/form-data"  就没法上传 -->
+                        <form action="{:url('excel/Excelin/excel_rec')}" enctype="multipart/form-data" method="post">
+                            <input type="file" name="file" /> <br>
+                            <input type="submit" value="上传" />
+                        </form>
+
+                    </div>
+                    <div class="panel-footer">
+                        excel 上传
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{include file="_part/foot" /}
+
+<script>
+
+
+</script>
+
+

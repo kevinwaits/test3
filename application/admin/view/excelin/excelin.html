@@ -1,0 +1,32 @@
+
+
+{include file="part/head" /}
+{include file="part/headbar" /}
+
+
+{include file="part/menu" /}
+
+<div class="content-page">
+    <div class="content">
+        <!-- End page title box -->
+        <div class="page-title-box">
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Greeva</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                <li class="breadcrumb-item active">Form Elements</li>
+            </ol>
+            <h4 class="page-title">Excel in</h4>
+        </div>
+
+<!-- 注意如果没有 enctype="multipart/form-data"  就没法上传 -->
+    <form action="{:url('admin/Excelin/excelin_do')}" enctype="multipart/form-data" method="post">
+        <input type="file" name="file" /> <br>
+        <input type="submit" value="上传s" />
+    </form>
+
+
+
+    </div>
+</div>
+
+{include file="part/foot" /}

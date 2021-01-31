@@ -1,0 +1,31 @@
+
+
+{include file="part/head" /}
+{include file="part/headbar" /}
+
+
+{include file="part/menu" /}
+
+<div class="content-page">
+    <div class="content">
+        <!-- End page title box -->
+        <div class="page-title-box">
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Greeva</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                <li class="breadcrumb-item active">Form Elements</li>
+            </ol>
+            <h4 class="page-title">Form Elements</h4>
+        </div>
+
+        <div class="panel-body">
+            <!-- 注意:如果没有 enctype="multipart/form-data"  就没法上传 -->
+            <form action="{:url('admin/Loadup/loadup_do')}" enctype="multipart/form-data" method="post">
+                <input type="file" name="file"> <br><br>
+                <button type="submit" class="btn btn-primary">上传</button>
+            </form>
+        </div>
+
+</div>
+
+{include file="part/foot" /}

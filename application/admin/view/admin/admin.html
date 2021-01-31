@@ -1,0 +1,97 @@
+
+
+{include file="part/head" /}
+{include file="part/headbar" /}
+<link href="__S__/layui/css/layui.css" rel="stylesheet" />
+
+<style type="text/css">
+    .btn {
+        border: 0;
+        width:120px;
+        height:40px;
+        line-height: 20px;
+        float:left;
+        color: white;
+        background-color: #08c;
+        border-radius: 20px;
+        text-align: center;
+        text-decoration: none;
+    }
+</style>
+{include file="part/menu" /}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <!-- end row -->
+            <div class="page-title-box">
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Greeva</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                    <li class="breadcrumb-item active">Form Elements</li>
+                </ol>
+                <h4 class="page-title">Form Elements</h4>
+            </div>
+
+        </div> <!-- end container-fluid-->
+    </div>
+</div>
+{include file="part/foot" /}
+<script src="__S__/layui/layui.all.js"></script>
+<script type="text/javascript">
+    function codeButton(){
+        var code = $("#code");
+        code.attr("disabled","disabled");
+        setTimeout(function(){
+            code.css("opacity","0.8");
+        },1000)
+        var time = 60;
+        var set=setInterval(function(){
+            code.val("("+--time+")秒后重新获取");
+        }, 1000);
+        setTimeout(function(){
+            code.attr("disabled",false).val("重新获取验证码");
+            clearInterval(set);
+        }, 60000);
+    }
+
+
+    $(".del_btn").click(function () {
+
+        layer.open({
+            type: 0, //Layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加
+            title: 'title here',   //标题
+            shade: 0.4,   //遮罩透明度
+            // skin:"msg",
+            content: "fuckyou",//支持获取DOM元素
+            btn: ['确定', '取消'], //按钮组
+            yes: function(index){   //layer.msg('yes');    //点击确定回调
+                alert(111);
+                layer.msg('的确很重要', {icon: 1, time: 1000}); //icon,和time是msg的参数
+                // layer.close(index);
+            },
+            no: function(){    //layer.alert('aaa',{title:'msg title'});  ////点击取消回调
+                alert(112222);
+            }
+        });
+
+        // layer.confirm('是否真的删除', {
+        //     btn: ['真的删除', '按错了'] //两个按钮有默认的样式
+        // }, function () {  //这里是第一个按钮的回调函数
+        //     location.href = "{:url('admin/Admin/del_month')}?month="+myid;
+        //     layer.msg('的确很重要', {icon: 1, time: 1000}); //icon,和time是msg的参数
+        // }, function () {  //这是第二个按钮的回调,可以用ajax,也可以用直接定位方法,建议使用url
+        //     // location.href = "{:url('admin/Admin/add')}";
+        //     // $.post("{:url('main/Main/rec_aj')}", {"name": "kkkk"},);
+        // });
+    });
+    // layer_confirm>>>>>>>
+
+    // layer_confirm>>>>>>>
+
+    //  layer_confirm_;;;;;
+
+
+    //  layer_confirm_;;;;;
+
+</script>
